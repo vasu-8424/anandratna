@@ -783,3 +783,117 @@ ul {
         height: 300px;
     }
 }
+
+/* =========================================
+   HIGHLIGHTS & FOUNDER SECTION
+   ========================================= */
+.highlights-section {
+    padding: 0 0 5rem 0;
+}
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+.highlight-item {
+    background: var(--color-bg-white);
+    padding: 2.5rem 2rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-strong);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: transform 0.3s ease;
+}
+.highlight-item:hover {
+    transform: translateY(-5px);
+}
+.highlight-item i {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+    padding: 1.2rem;
+    border-radius: var(--radius-sm);
+}
+.highlight-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+.highlight-item p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Founder Card */
+.founder-card {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-strong);
+}
+.founder-card img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+}
+.founder-info {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.95);
+    padding: 1.5rem;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.founder-info h4 {
+    margin-bottom: 0.2rem;
+    font-size: 1.5rem;
+    color: var(--color-text-main);
+}
+.founder-info p {
+    margin-bottom: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 992px) {
+    .hero-card {
+        height: auto;
+        min-height: auto;
+    }
+    .highlights-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .founder-card img {
+        height: 400px;
+    }
+    .hero-card {
+        padding: 2rem;
+    }
+    .highlight-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .founder-card img {
+        height: 300px;
+    }
+    .hero-card-left h1 {
+        font-size: 2.2rem;
+    }
+    .hero-card-left .badge {
+        width: 100%;
+        min-width: 100%;
+    }
+}
