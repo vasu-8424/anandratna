@@ -69,58 +69,291 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
-
-// Hero Slider
+// Cinematic Scroll and Parallax Effect
 document.addEventListener('DOMContentLoaded', () => {
-    const slides = document.querySelectorAll('.hero-slide');
-    const nextBtn = document.querySelector('.slider-btn.next');
-    const prevBtn = document.querySelector('.slider-btn.prev');
-    let currentSlide = 0;
+    const header = document.querySelector('.header');
+    const hero = document.querySelector('.cinematic-hero');
+    const sliderTrack = document.getElementById('hero-slider-track');
+    const slides = document.querySelectorAll('.cinematic-slide');
+    const dots = document.querySelectorAll('.slide-dot');
+    const prevBtn = document.querySelector('.cinematic-controls .prev');
+    const nextBtn = document.querySelector('.cinematic-controls .next');
 
-    if(slides.length > 0 && nextBtn && prevBtn) {
-        function showSlide(index) {
-            slides.forEach(s => s.classList.remove('active'));
+    // Cinematic Slider Logic (Wiper Effect & Performance Fix)
+    if (sliderTrack && slides.length > 0) {
+        let currentSlide = 0;
+        let slideInterval;
+
+        const updateSlider = (index) => {
+            // Remove previous prev-slide class
+            slides.forEach(s => s.classList.remove('prev-slide'));
+            
+            // Turn current active into prev-slide so it stays visible during the cross-slide
+            const oldActive = document.querySelector('.cinematic-slide.active');
+            if (oldActive) {
+                oldActive.classList.remove('active');
+                oldActive.classList.add('prev-slide');
+                
+                // Reset title transform so animation replays fresh next time
+                const oldTitle = oldActive.querySelector('.slide-title');
+                if (oldTitle) {
+                    setTimeout(() => {
+                        // Only reset if no longer active
+                        if (!oldActive.classList.contains('active')) {
+                            oldTitle.style.transition = 'none';
+                            // Remove inline styles entirely so base CSS takes over
+                            oldTitle.style.transform = '';
+                            oldTitle.style.opacity = '';
+                            oldTitle.style.width = ''; // Also clear width if used by typing anim
+                            // Re-enable transitions after reset
+                            requestAnimationFrame(() => requestAnimationFrame(() => {
+                                oldTitle.style.transition = '';
+                            }));
+                        }
+                    }, 1400);
+                }
+                
+                // Pause inactive videos after transition to fix shaking/stuttering performance
+                const oldVideo = oldActive.querySelector('video');
+                if (oldVideo) {
+                    setTimeout(() => { 
+                        if (!oldActive.classList.contains('active')) oldVideo.pause(); 
+                    }, 1200); // 1.2s matches CSS transition length
+                }
+            }
+
+            // Activate new slide
             slides[index].classList.add('active');
+            
+            // Play the new video immediately to ensure smooth playback
+            const newVideo = slides[index].querySelector('video');
+            if (newVideo) {
+                let playPromise = newVideo.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(_ => {}); // ignore autoplay errors securely
+                }
+            }
+            
+            // Update dots
+            dots.forEach(d => d.classList.remove('active'));
+            if(dots[index]) dots[index].classList.add('active');
+        };
+
+        const nextSlide = () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider(currentSlide);
+        };
+
+        const prevSlide = () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlider(currentSlide);
+        };
+
+        const startAutoPlay = () => {
+            slideInterval = setInterval(nextSlide, 5000); // 5 seconds per slide
+        };
+
+        const resetAutoPlay = () => {
+            clearInterval(slideInterval);
+            startAutoPlay();
+        };
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                resetAutoPlay();
+            });
         }
 
-        nextBtn.addEventListener('click', () => {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                resetAutoPlay();
+            });
+        }
+
+        dots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => {
+                currentSlide = idx;
+                updateSlider(currentSlide);
+                resetAutoPlay();
+            });
         });
 
-        prevBtn.addEventListener('click', () => {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
+        // Initialize first slide's video properly
+        const firstVideo = slides[0]?.querySelector('video');
+        if (firstVideo) {
+            firstVideo.play().catch(_ => {});
+        }
+        
+        // Pause other videos initially
+        slides.forEach((slide, index) => {
+            if (index !== 0) {
+                const vid = slide.querySelector('video');
+                if (vid) vid.pause();
+            }
         });
+
+        startAutoPlay();
+    }
+
+    window.addEventListener('scroll', () => {
+        // Toggle Nav Background & Height
+        if (window.scrollY > 50) {
+            header.classList.add('nav-scrolled');
+        } else {
+            header.classList.remove('nav-scrolled');
+        }
+
+        // Parallax Effect for video wrappers (separated from scaling to prevent jitter)
+        const wrappers = document.querySelectorAll('.video-parallax-wrapper');
+        if (wrappers.length > 0 && hero) {
+            const scrollPercent = window.scrollY / window.innerHeight;
+            if (scrollPercent <= 1) {
+                wrappers.forEach(wrapper => {
+                    // Translate the wrapper for parallax, leaving the video element strictly for CSS scale zoom
+                    wrapper.style.transform = `translateY(${scrollPercent * 60}px)`;
+                });
+            }
+        }
+    });
+
+});
+
+// Auto-scroll Reviews (Enhanced)
+document.addEventListener('DOMContentLoaded', () => {
+    const scroller = document.querySelector('.reviews-scroller');
+    if (!scroller) return;
+
+    let isHovered = false;
+    scroller.addEventListener('mouseenter', () => isHovered = true);
+    scroller.addEventListener('mouseleave', () => isHovered = false);
+
+    // Clone cards for infinite loop
+    const cards = Array.from(scroller.children);
+    cards.forEach(card => {
+        const clone = card.cloneNode(true);
+        scroller.appendChild(clone);
+    });
+
+    let scrollAmount = 0;
+    function step() {
+        if (!isHovered) {
+            scrollAmount += 1; // Pixels per frame for smooth movement
+            if (scrollAmount >= scroller.scrollWidth / 2) {
+                scrollAmount = 0;
+            }
+            scroller.scrollLeft = scrollAmount;
+        }
+        requestAnimationFrame(step);
+    }
+
+    // Initialize smooth continuous scroll
+    // Only if not using scroll-snap (which conflicts with continuous scroll)
+    scroller.style.scrollSnapType = 'none'; 
+    requestAnimationFrame(step);
+});
+
+// Animated Counter
+document.addEventListener('DOMContentLoaded', () => {
+    const statsSection = document.querySelector('.stats-section');
+    const counters = document.querySelectorAll('.stat-number');
+    const speed = 200; // The lower the slower
+
+    const startCounters = () => {
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const suffix = counter.getAttribute('data-suffix') || '';
+            const decimals = +counter.getAttribute('data-decimals') || 0;
+            let current = 0; // Use internal variable to prevent rounding errors
+            const inc = target / speed;
+
+            const updateCount = () => {
+                if (current < target) {
+                    current += inc;
+                    // Ensure we don't overshoot
+                    const displayValue = current > target ? target : current;
+                    counter.innerText = displayValue.toFixed(decimals) + suffix;
+                    
+                    if (current < target) {
+                        setTimeout(updateCount, 15);
+                    }
+                } else {
+                    counter.innerText = target.toFixed(decimals) + suffix;
+                }
+            };
+            updateCount();
+        });
+    };
+
+    // Intersection Observer to trigger only once when visible
+    if (statsSection) {
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                startCounters();
+                observer.unobserve(statsSection); 
+            }
+        }, { threshold: 0.5 });
+        
+        observer.observe(statsSection);
     }
 });
 
-// Auto-scroll Reviews
+
+// --- Section Scroll-Reveal (repeating on every scroll into view) ---
 document.addEventListener('DOMContentLoaded', () => {
-    const reviewsScroller = document.querySelector('.reviews-scroller');
-    if (reviewsScroller) {
-        let isHovered = false;
-        let scrollPos = 0;
-        
-        reviewsScroller.addEventListener('mouseenter', () => isHovered = true);
-        reviewsScroller.addEventListener('mouseleave', () => isHovered = false);
+    const revealEls = document.querySelectorAll('.section-reveal');
+    if (!revealEls.length) return;
 
-        setInterval(() => {
-            if (!isHovered) {
-                const card = reviewsScroller.querySelector('.review-card');
-                if (!card) return;
-                const cardWidth = card.offsetWidth + 32;
-                
-                scrollPos += cardWidth;
-                let maxScroll = reviewsScroller.scrollWidth - reviewsScroller.clientWidth;
-
-                if (scrollPos > maxScroll + 10) {
-                    scrollPos = 0;
-                    reviewsScroller.scrollTo({ left: 0, behavior: 'smooth' });
-                } else {
-                    reviewsScroller.scrollTo({ left: scrollPos, behavior: 'smooth' });
-                }
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Entering viewport — animate in
+                entry.target.classList.add('in-view');
+            } else {
+                // Leaving viewport — reset so it animates again on next scroll
+                entry.target.classList.remove('in-view');
             }
-        }, 3500); 
+        });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+});
+
+// --- Search Modal Overlay ---
+document.addEventListener('DOMContentLoaded', () => {
+    const searchBtn = document.querySelector('.search-btn');
+    const searchOverlay = document.querySelector('.search-overlay');
+    const closeSearchBtn = document.querySelector('.close-search');
+    const searchInput = document.querySelector('.search-box input');
+
+    if(searchBtn && searchOverlay) {
+        searchBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            searchOverlay.classList.add('active');
+            setTimeout(() => searchInput.focus(), 100);
+            document.body.style.overflow = 'hidden'; // Stop scrolling
+        });
+
+        const closeSearch = () => {
+            searchOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+            searchInput.value = '';
+        };
+
+        closeSearchBtn.addEventListener('click', closeSearch);
+
+        // Close on ESC or clicking outside
+        window.addEventListener('keydown', (e) => {
+            if(e.key === 'Escape' && searchOverlay.classList.contains('active')) {
+                closeSearch();
+            }
+        });
+
+        searchOverlay.addEventListener('click', (e) => {
+            if(e.target === searchOverlay) {
+                closeSearch();
+            }
+        });
     }
 });

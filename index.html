@@ -21,30 +21,37 @@
     <!-- Top Header -->
     <header class="header">
         <div class="container header-container">
-            <!-- Logo -->
-            <a href="#" class="logo">
-                <span class="logo-main">ANANDARATANA</span>
-                <span class="logo-sub">INTERIOR & CONSTRUCTION</span>
-            </a>
-            
-            <!-- Desktop Nav -->
-            <nav class="nav-links">
+            <!-- Left: Menu Items -->
+            <nav class="nav-left">
                 <a href="#hero" class="active">Home</a>
-                <a href="#about">About Us</a>
-                <a href="#services">Services <i class='bx bx-chevron-down'></i></a>
+                <a href="#about">About</a>
                 <a href="#projects">Projects</a>
-                <a href="#contact">Contact Us</a>
+                <a href="#contact">Contact</a>
             </nav>
-
-            <!-- Right CTA Button -->
-            <div class="header-right">
-                <a href="tel:+916361356736" class="btn btn-primary btn-phone">
-                    <i class='bx bx-phone-call'></i> +91 63613 56736
+            
+            <!-- Center: Brand Logo -->
+            <div class="nav-center">
+                <a href="#" class="logo">
+                    <span class="logo-main">ANANDARATANA</span>
                 </a>
+            </div>
+
+            <!-- Right: Search -->
+            <div class="nav-right">
+                <button class="search-btn"><i class='bx bx-search'></i></button>
                 <button class="mobile-menu-btn"><i class='bx bx-menu'></i></button>
             </div>
         </div>
     </header>
+
+    <!-- Full-Screen Search Modal Overlay -->
+    <div class="search-overlay">
+        <button class="close-search"><i class='bx bx-x'></i></button>
+        <div class="search-box">
+            <input type="text" placeholder="Search for projects, services, or more...">
+            <button class="submit-search"><i class='bx bx-search'></i></button>
+        </div>
+    </div>
 
     <!-- Mobile Navigation Overlay (hidden by default) -->
     <div class="mobile-nav">
@@ -57,101 +64,183 @@
         </nav>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero-section" id="hero">
-        <div class="container hero-container-wide">
-            <div class="hero-wrapper">
-                <!-- High-res 4K background image -->
-                
-                <div class="hero-card">
-                    
-                    <div class="hero-slides-container">
-                        <!-- Slide 1 -->
-                        <div class="hero-slide active">
-                            <div class="hero-card-left">
-                                <span class="badge badge-light">NEW-AGE, TECHNICAL CONSTRUCTION.</span>
-                                <h1>Building Trust, Crafting Excellence</h1>
+    <!-- Cinematic Hero Section -->
+    <section class="cinematic-hero" id="hero">
+        <div class="video-container">
+            <div class="cinematic-slider-track" id="hero-slider-track">
+                <!-- Slide 1 -->
+                <div class="cinematic-slide active">
+                    <div class="video-parallax-wrapper">
+                        <video autoplay loop muted playsinline class="hero-video">
+                            <source src="./images/cinematic_video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="video-overlay"></div>
+                    <!-- Corner Brackets -->
+                    <div class="slide-corners">
+                        <span class="corner tl"></span>
+                        <span class="corner tr"></span>
+                        <span class="corner bl"></span>
+                        <span class="corner br"></span>
+                    </div>
+                    <div class="slide-content container hero-content-centered">
+                        <div class="hero-text-box">
+                            <span class="badge badge-primary-light reveal-up">ESTABLISHED 2023</span>
+                            <div class="title-wrap">
+                                <h1 class="slide-title">Engineering Excellence</h1>
                             </div>
-                            <div class="hero-card-right">
-                                <p>When it comes to building your future, reliable engineering is the first line of defense. We provide premium construction and interior services designed to stand the test of time.</p>
-                                <a href="#contact" class="btn btn-primary">
-                                    <span class="btn-text">START YOUR PROJECT</span>
-                                    <span class="btn-icon"><i class='bx bx-chevron-right'></i></span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Slide 2 -->
-                        <div class="hero-slide">
-                            <div class="hero-card-left">
-                                <span class="badge badge-light">EXPERT INTERIOR DESIGN.</span>
-                                <h1>Elevate Your Living Spaces</h1>
-                            </div>
-                            <div class="hero-card-right">
-                                <p>Discover custom furniture, modular kitchen designs, and modern lighting solutions tailored to your unique aesthetic and functional needs.</p>
-                                <a href="#services" class="btn btn-primary">
-                                    <span class="btn-text">EXPLORE INTERIORS</span>
-                                    <span class="btn-icon"><i class='bx bx-chevron-right'></i></span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Slide 3 -->
-                        <div class="hero-slide">
-                            <div class="hero-card-left">
-                                <span class="badge badge-light">PRECISION & PLANNING.</span>
-                                <h1>Blueprints for Flawless Execution</h1>
-                            </div>
-                            <div class="hero-card-right">
-                                <p>Start your project right with detailed 2D floor plans, immersive 3D elevations, and structural approvals you can trust.</p>
-                                <a href="#contact" class="btn btn-primary">
-                                    <span class="btn-text">GET A QUOTE</span>
-                                    <span class="btn-icon"><i class='bx bx-chevron-right'></i></span>
-                                </a>
+                            <p class="reveal-up delay-2">We treat each project as our own, providing personalized solutions tailored to meet the unique needs of our clients.</p>
+                            <div class="hero-actions reveal-up delay-3">
+                                <a href="#projects" class="btn btn-primary btn-glow">EXPLORE PROJECTS</a>
+                                <a href="#contact" class="btn btn-outline-white">VIEW SERVICES</a>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Slider Controls -->
-                    <div class="slider-controls">
-                        <button class="slider-btn prev"><i class='bx bx-chevron-left'></i></button>
-                        <button class="slider-btn next active-btn"><i class='bx bx-chevron-right'></i></button>
-                    </div>
-
                 </div>
+
+                <!-- Slide 2 -->
+                <div class="cinematic-slide">
+                    <div class="video-parallax-wrapper">
+                        <video autoplay loop muted playsinline class="hero-video">
+                            <source src="./images/Futuristic_Forest_Construction_Cinematic_Video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="video-overlay"></div>
+                    <!-- Corner Brackets -->
+                    <div class="slide-corners">
+                        <span class="corner tl"></span>
+                        <span class="corner tr"></span>
+                        <span class="corner bl"></span>
+                        <span class="corner br"></span>
+                    </div>
+                    <div class="slide-content container hero-content-centered">
+                        <div class="hero-text-box">
+                            <span class="badge badge-primary-light reveal-up">EXPERT CRAFTSMANSHIP</span>
+                            <div class="title-wrap">
+                                <h1 class="slide-title">Premium Interiors</h1>
+                            </div>
+                            <p class="reveal-up delay-2">Transforming raw spaces into stunning, functional environments with meticulous attention to detail and modern aesthetics.</p>
+                            <div class="hero-actions reveal-up delay-3">
+                                <a href="#projects" class="btn btn-primary btn-glow">OUR PORTFOLIO</a>
+                                <a href="#contact" class="btn btn-outline-white">GET IN TOUCH</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="cinematic-slide">
+                    <div class="video-parallax-wrapper">
+                        <video autoplay loop muted playsinline class="hero-video">
+                            <source src="./images/Construction_Site_Engineers_Cinematic_Video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="video-overlay"></div>
+                    <!-- Corner Brackets -->
+                    <div class="slide-corners">
+                        <span class="corner tl"></span>
+                        <span class="corner tr"></span>
+                        <span class="corner bl"></span>
+                        <span class="corner br"></span>
+                    </div>
+                    <div class="slide-content container hero-content-centered">
+                        <div class="hero-text-box">
+                            <span class="badge badge-primary-light reveal-up">UNMATCHED SCALE</span>
+                            <div class="title-wrap">
+                                <h1 class="slide-title">Robust Construction</h1>
+                            </div>
+                            <p class="reveal-up delay-2">Delivering monumental commercial and residential builds executed with safety, precision, and architectural mastery.</p>
+                            <div class="hero-actions reveal-up delay-3">
+                                <a href="#services" class="btn btn-primary btn-glow">OUR SERVICES</a>
+                                <a href="#contact" class="btn btn-outline-white">START A PROJECT</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- .cinematic-slider-track -->
+            
+            <div class="noise-overlay"></div>
+            
+            <!-- Animated corner glows -->
+            <div class="corner-glow glow-1"></div>
+            <div class="corner-glow glow-2"></div>
+            <div class="corner-glow glow-3"></div>
+            
+            <!-- Slider Controls -->
+            <div class="cinematic-controls">
+                <button class="c-btn prev"><i class='bx bx-chevron-left'></i></button>
+                <div class="slider-dots">
+                    <span class="slide-dot active" data-index="0"></span>
+                    <span class="slide-dot" data-index="1"></span>
+                    <span class="slide-dot" data-index="2"></span>
+                </div>
+                <button class="c-btn next"><i class='bx bx-chevron-right'></i></button>
             </div>
         </div>
     </section>
 
-    <!-- Company Highlights -->
-    <section class="highlights-section" id="projects">
-        <div class="container highlights-grid">
-            <div class="highlight-item">
-                <i class='bx bx-check-shield'></i>
-                <div>
-                    <h3>Quality Focused</h3>
-                    <p>Premium materials & technical execution</p>
-                </div>
+    <!-- Expertise Section -->
+    <section class="expertise-section section-reveal" id="projects">
+        <div class="container">
+            <div class="section-title text-center expertise-title">
+                <span class="badge badge-primary-light mx-auto">OUR SERVICES</span>
+                <h2>What We Specialize In</h2>
             </div>
-            <div class="highlight-item">
-                <i class='bx bxs-buildings'></i>
-                <div>
-                    <h3>18+ Projects</h3>
-                    <p>8 Completed, 10 Ongoing</p>
+            <div class="expertise-grid">
+                <!-- Card 1: Residential Construction -->
+                <div class="expertise-card sr-item">
+                    <div class="card-icon"><i class='bx bx-home-heart'></i></div>
+                    <div class="card-info">
+                        <h3>Residential Construction</h3>
+                        <p>New home builds & custom</p>
+                    </div>
                 </div>
-            </div>
-            <div class="highlight-item">
-                <i class='bx bx-group'></i>
-                <div>
-                    <h3>Society First</h3>
-                    <p>Contributing through sustainable development</p>
+                <!-- Card 2: Commercial Buildings -->
+                <div class="expertise-card sr-item">
+                    <div class="card-icon"><i class='bx bxs-buildings'></i></div>
+                    <div class="card-info">
+                        <h3>Commercial Buildings</h3>
+                        <p>Office, retail & industrial projects</p>
+                    </div>
+                </div>
+                <!-- Card 3: Renovation & Remodeling -->
+                <div class="expertise-card sr-item">
+                    <div class="card-icon"><i class='bx bx-wrench'></i></div>
+                    <div class="card-info">
+                        <h3>Renovation & Remodeling</h3>
+                        <p>Home & commercial renovations</p>
+                    </div>
+                </div>
+                <!-- Card 4: Project Management -->
+                <div class="expertise-card sr-item">
+                    <div class="card-icon"><i class='bx bx-paste'></i></div>
+                    <div class="card-info">
+                        <h3>Project Management</h3>
+                        <p>Planning & supervision</p>
+                    </div>
+                </div>
+                <!-- Card 5: Structural Design -->
+                <div class="expertise-card sr-item">
+                    <div class="card-icon"><i class='bx bx-ruler'></i></div>
+                    <div class="card-info">
+                        <h3>Structural Design</h3>
+                        <p>Engineering & design solutions</p>
+                    </div>
+                </div>
+                <!-- Card 6: Interior Finishing -->
+                <div class="expertise-card sr-item">
+                    <div class="card-icon"><i class='bx bx-paint-roll'></i></div>
+                    <div class="card-info">
+                        <h3>Interior Finishing</h3>
+                        <p>Custom interior fit-outs</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="about-section" id="about">
+    <section class="about-section section-reveal" id="about">
         <div class="container">
             <div class="about-grid">
                 
@@ -214,157 +303,108 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services-section" id="services">
+    <!-- Stats Section -->
+    <section class="stats-section section-reveal">
         <div class="container">
-            <div class="section-title text-center">
-                <span class="badge badge-primary-light mx-auto">OUR SERVICE</span>
-                <h2>Protect Your Space with<br>Our Comprehensive Services</h2>
+            <h2 class="stats-main-title">COMPANY STORY</h2>
+            <div class="stats-grid">
+                <!-- Stat 1 -->
+                <div class="stat-item sr-item">
+                    <div class="stat-icon"><i class='bx bx-check-double'></i></div>
+                    <div class="stat-number" data-target="100" data-suffix="%">0</div>
+                    <div class="stat-text">Quality & On Time Delivery</div>
+                </div>
+                <!-- Stat 2 -->
+                <div class="stat-item sr-item">
+                    <div class="stat-icon"><i class='bx bx-star'></i></div>
+                    <div class="stat-number" data-target="4.9" data-suffix="+" data-decimals="1">0</div>
+                    <div class="stat-text">Best Rating</div>
+                </div>
+                <!-- Stat 3 -->
+                <div class="stat-item sr-item">
+                    <div class="stat-icon"><i class='bx bx-handshake'></i></div>
+                    <div class="stat-number" data-target="530" data-suffix="+">0</div>
+                    <div class="stat-text">Happy Clients</div>
+                </div>
+                <!-- Stat 4 -->
+                <div class="stat-item sr-item">
+                    <div class="stat-icon"><i class='bx bx-group'></i></div>
+                    <div class="stat-number" data-target="50" data-suffix="+">0</div>
+                    <div class="stat-text">Skilled staff</div>
+                </div>
+                <!-- Stat 5 -->
+                <div class="stat-item sr-item">
+                    <div class="stat-icon"><i class='bx bx-happy-beaming'></i></div>
+                    <div class="stat-number" data-target="100" data-suffix="%">0</div>
+                    <div class="stat-text">Satisfied Customers</div>
+                </div>
             </div>
-            
-            <div class="services-layout">
-                <!-- Left Vertical Tabs -->
-                <div class="service-tabs">
-                    
-                    <div class="tab-btn" data-target="tab-1">
-                        <i class='bx bx-hard-hat'></i>
-                        <span>Construction Services</span>
-                    </div>
-                    
-                    <div class="tab-btn active" data-target="tab-2">
-                        <i class='bx bx-chair'></i>
-                        <span>Interior Solutions</span>
-                    </div>
+        </div>
+    </section>
 
-                    <div class="tab-btn" data-target="tab-3">
-                        <i class='bx bx-pencil'></i>
-                        <span>Planning & Design</span>
-                    </div>
+    <!-- Services Section (PCL-style) -->
+    <section class="services-section section-reveal" id="services">
+        <!-- Decorative gold angular symbol top-right -->
+        <div class="pcl-symbol" aria-hidden="true">
+            <div class="pcl-sym-top"></div>
+            <div class="pcl-sym-bot"></div>
+        </div>
 
-                    <div class="tab-btn" data-target="tab-4">
-                        <i class='bx bx-building-house'></i>
-                        <span>Commercial Fit-outs</span>
-                    </div>
-
-                    <div class="tab-btn" data-target="tab-5">
-                        <i class='bx bx-home-alt'></i>
-                        <span>Renovation & Remodeling</span>
-                    </div>
-
+        <div class="container pcl-layout">
+            <!-- LEFT: text column -->
+            <div class="pcl-left">
+                <div class="pcl-label">
+                    <span class="pcl-rule"></span>
+                    <span class="pcl-label-text">WHAT WE DO</span>
                 </div>
 
-                <!-- Right Content Area -->
-                <div class="service-content-wrapper">
-                    
-                    <!-- Tab Panel 1 -->
-                    <div class="tab-panel" id="tab-1">
-                        <div class="panel-layout">
-                            <div class="panel-image">
-                                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Construction">
-                            </div>
-                            <div class="panel-text">
-                                <h3>Construction Services</h3>
-                                <p>Robust, code-compliant building from the ground up. We ensure structural integrity and premium output for every home.</p>
-                                <ul class="check-list">
-                                    <li><i class='bx bx-check-circle'></i> Residential Construction</li>
-                                    <li><i class='bx bx-check-circle'></i> Commercial Construction</li>
-                                    <li><i class='bx bx-check-circle'></i> End-to-End Site Management</li>
-                                </ul>
-                                <a href="#contact" class="btn btn-primary">
-                                    <span class="btn-text">LEARN MORE</span>
-                                    <span class="btn-icon"><i class='bx bx-chevron-right'></i></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                <h2 class="pcl-heading">When we focus on your space,<br>everyone wins.</h2>
 
-                    <!-- Tab Panel 2 (Active by default based on visual template) -->
-                    <div class="tab-panel active" id="tab-2">
-                        <div class="panel-layout">
-                            <div class="panel-image">
-                                <img src="./images/services_interior.png" alt="Interior Solutions">
-                            </div>
-                            <div class="panel-text">
-                                <h3>Interior Solutions</h3>
-                                <p>Premium interior solutions remain a popular choice for their aesthetics & reliability. We offer expert installation and custom designs.</p>
-                                <ul class="check-list">
-                                    <li><i class='bx bx-check-circle'></i> Custom Furniture & Wardrobes</li>
-                                    <li><i class='bx bx-check-circle'></i> Modular Kitchen Designing</li>
-                                    <li><i class='bx bx-check-circle'></i> False Ceiling & Lighting</li>
-                                </ul>
-                                <a href="#contact" class="btn btn-primary">
-                                    <span class="btn-text">LEARN MORE</span>
-                                    <span class="btn-icon"><i class='bx bx-chevron-right'></i></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="pcl-body">
+                    <p>The flexibility to mobilize the right skilled professionals to deliver unique solutions — an unwavering focus on delivering lasting value to your property from the ground up.</p>
+                    <p>Founded in 2023 by an engineering graduate, Anandaratana Interiors & Construction treats each project as our own, combining structural precision with aesthetic excellence.</p>
+                    <p>Whether you need a new home build, a commercial fit-out, or a complete interior transformation — partnering with us means gaining a trusted, full-service construction partner rooted in Sidlaghatta.</p>
+                </div>
 
-                    <!-- Tab Panel 3 -->
-                    <div class="tab-panel" id="tab-3">
-                        <div class="panel-layout">
-                            <div class="panel-image">
-                                <img src="https://images.unsplash.com/photo-1542621334-a254cf47733d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Planning">
-                            </div>
-                            <div class="panel-text">
-                                <h3>Planning & Design</h3>
-                                <p>Intelligent blueprints for flawless execution. Before we build, we design accurately using the latest software.</p>
-                                <ul class="check-list">
-                                    <li><i class='bx bx-check-circle'></i> Detailed 2D Floor Plans</li>
-                                    <li><i class='bx bx-check-circle'></i> Immersive 3D Elevations</li>
-                                    <li><i class='bx bx-check-circle'></i> Structural Engineering Approvals</li>
-                                </ul>
-                                <a href="#contact" class="btn btn-primary">
-                                    <span class="btn-text">LEARN MORE</span>
-                                    <span class="btn-icon"><i class='bx bx-chevron-right'></i></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                <a href="#contact" class="pcl-cta-btn">CONTACT US</a>
+            </div>
 
-                    <!-- Add Panels 4 and 5 placeholders to prevent empty clicks -->
-                    <div class="tab-panel" id="tab-4">
-                        <div class="panel-layout">
-                            <div class="panel-image">
-                                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Commercial">
-                            </div>
-                            <div class="panel-text">
-                                <h3>Commercial Fit-outs</h3>
-                                <p>Transforming commercial spaces into high-performance work environments tailored to your brand identity.</p>
-                                <ul class="check-list">
-                                    <li><i class='bx bx-check-circle'></i> Office Layout Planning</li>
-                                    <li><i class='bx bx-check-circle'></i> Glass Partitions</li>
-                                    <li><i class='bx bx-check-circle'></i> HVAC & Electrical Routing</li>
-                                </ul>
-                                <a href="#contact" class="btn btn-primary">
-                                    <span class="btn-text">LEARN MORE</span>
-                                    <span class="btn-icon"><i class='bx bx-chevron-right'></i></span>
-                                </a>
-                            </div>
-                        </div>
+            <!-- RIGHT: stats / services column -->
+            <div class="pcl-right">
+                <div class="pcl-stat">
+                    <div class="pcl-stat-icon"><i class='bx bx-hard-hat'></i></div>
+                    <div class="pcl-stat-info">
+                        <div class="pcl-stat-number">530<span>+</span></div>
+                        <div class="pcl-stat-label">Projects Completed</div>
                     </div>
-
-                    <div class="tab-panel" id="tab-5">
-                        <div class="panel-layout">
-                            <div class="panel-image">
-                                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Renovation">
-                            </div>
-                            <div class="panel-text">
-                                <h3>Renovation & Remodeling</h3>
-                                <p>Breathe new life into your existing spaces with our expert renovation services focused on structural safety and modern aesthetics.</p>
-                                <ul class="check-list">
-                                    <li><i class='bx bx-check-circle'></i> Complete Home Makeovers</li>
-                                    <li><i class='bx bx-check-circle'></i> Bathroom Remodeling</li>
-                                    <li><i class='bx bx-check-circle'></i> Extension Builds</li>
-                                </ul>
-                                <a href="#contact" class="btn btn-primary">
-                                    <span class="btn-text">LEARN MORE</span>
-                                    <span class="btn-icon"><i class='bx bx-chevron-right'></i></span>
-                                </a>
-                            </div>
-                        </div>
+                </div>
+                <div class="pcl-stat">
+                    <div class="pcl-stat-icon"><i class='bx bx-chair'></i></div>
+                    <div class="pcl-stat-info">
+                        <div class="pcl-stat-number">100<span>%</span></div>
+                        <div class="pcl-stat-label">Custom Interior Solutions Delivered</div>
                     </div>
-
+                </div>
+                <div class="pcl-stat">
+                    <div class="pcl-stat-icon"><i class='bx bx-pencil'></i></div>
+                    <div class="pcl-stat-info">
+                        <div class="pcl-stat-number">2<span>+</span></div>
+                        <div class="pcl-stat-label">Years of Engineering Excellence</div>
+                    </div>
+                </div>
+                <div class="pcl-stat">
+                    <div class="pcl-stat-icon"><i class='bx bx-building-house'></i></div>
+                    <div class="pcl-stat-info">
+                        <div class="pcl-stat-number">50<span>+</span></div>
+                        <div class="pcl-stat-label">Skilled Professionals On the Team</div>
+                    </div>
+                </div>
+                <div class="pcl-stat">
+                    <div class="pcl-stat-icon"><i class='bx bx-star'></i></div>
+                    <div class="pcl-stat-info">
+                        <div class="pcl-stat-number">4.9<span>+</span></div>
+                        <div class="pcl-stat-label">Client Satisfaction Rating</div>
+                    </div>
                 </div>
             </div>
         </div>
